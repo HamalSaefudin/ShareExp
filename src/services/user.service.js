@@ -14,6 +14,40 @@ const createUser = async (userPayload) => {
     return User.create(userPayload);
 };
 
+/**
+ * Query for users
+ * @param {Object} filter - Mongo filter
+ * @param {Object} options - Query options
+ * @param {string} [options.sortBy] - Sort option in the format: sortField:(desc|asc)
+ * @param {number} [options.limit] - Maximum number of results per page (default = 10)
+ * @param {number} [options.page] - Current page (default = 1)
+ * @returns {Promise<QueryResult>}
+ */
+const queryUser = async (filter, options) => {
+    const users = await User.paginate(filter, options);
+    return users;
+};
+
+/**
+ * get user by id
+ * @param {string} userId
+ * @returns {Promise<User>}
+ */
+const getUserById = async (userId) => {
+    const user = User.findById(userId);
+    return user;
+};
+
+/**
+ * get user by email
+ * @param {string} email
+ * @returns {Promise<user>}
+ */
+const getUserByEmail = async (email) => User.findOne({ email });
+
 module.exports = {
     createUser,
+    queryUser,
+    getUserById,
+    getUserByEmail,
 };

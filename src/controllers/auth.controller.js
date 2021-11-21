@@ -1,5 +1,9 @@
-const logger = require('../config/logger');
+const { authService, tokenService } = require('../services');
+const catchAsync = require('../utils/catchAsync');
 
-exports.register = (req) => {
-    logger.info(req);
-};
+exports.login = catchAsync(async (req, res) => {
+    const { email, password } = req.body;
+    const user = await authService.loginUsernamePass(email, password);
+    const token = await tokenService.generateAuthToken(user);
+    res.send(token);
+});
