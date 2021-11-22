@@ -10,3 +10,5 @@ router.get('/getAllUser', validate(userValidation.getUsers), userController.getA
 router.get('/getUser/:userId', validate(userValidation.getUser), userController.getUser);
 router.patch('/updateUser/:userId', validate(userValidation.updateUser), userController.updateUserById);
 router.delete('/deleteUser/:userId', validate(userValidation.deleteUser), userController.deleteUser);
+
+module.exports = router;

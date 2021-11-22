@@ -1,7 +1,7 @@
 const Joi = require('joi');
 
 const createUser = {
-    body: Joi.object.keys({
+    body: Joi.object().keys({
         email: Joi.string().required().email(),
         password: Joi.string().required(),
         name: Joi.string().required(),
@@ -10,7 +10,7 @@ const createUser = {
 };
 
 const getUsers = {
-    query: Joi.object.keys({
+    query: Joi.object().keys({
         name: Joi.string(),
         role: Joi.string().valid('user', 'admin'),
         sortBy: Joi.string(),
@@ -20,16 +20,16 @@ const getUsers = {
 };
 
 const getUser = {
-    params: Joi.object.keys({
+    params: Joi.object().keys({
         userId: Joi.string(),
     }),
 };
 
 const updateUser = {
-    params: Joi.object.keys({
+    params: Joi.object().keys({
         userId: Joi.string(),
     }),
-    body: Joi.object.keys({
+    body: Joi.object().keys({
         name: Joi.string().email(),
         password: Joi.string(),
         email: Joi.string(),
@@ -37,7 +37,7 @@ const updateUser = {
 };
 
 const deleteUser = {
-    params: Joi.object.keys({
+    params: Joi.object().keys({
         userId: Joi.string(),
     }),
 };

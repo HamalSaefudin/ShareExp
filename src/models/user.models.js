@@ -30,7 +30,7 @@ const userSchema = mongoose.Schema({
     },
     isEmailVerified: {
         type: Boolean,
-        default: false,
+        default: true,
     },
 }, {
     timestamps: true,
@@ -46,7 +46,7 @@ userSchema.plugin(paginate);
  * @returns {Promise<Boolean>}
  */
 userSchema.statics.isEmailTaken = async function (email, excludeUserId) {
-    const user = await this.findOne(email, { $ne: excludeUserId });
+    const user = await this.findOne({ email, _id: { $ne: excludeUserId } });
     return !!user;
 };
 

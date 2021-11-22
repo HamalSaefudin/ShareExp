@@ -1,0 +1,18 @@
+POST http://localhost:3000/v1/users/createUser
+Content-Type: application/json
+
+{
+    "email":"Hamalsaefudin4@gmail.com",
+    "password":"Hamal123",
+    "name": "Hamal",
+    "role":"user"
+}
+
+####
+POST http://localhost:3000/v1/auth/login
+Content-Type: application/json
+
+{
+    "email":"Hamalsaefudin4@gmail.com",
+    "password":"Hamal123"
+}

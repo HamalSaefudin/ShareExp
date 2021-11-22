@@ -10,6 +10,7 @@ const morgan = require('./config/morgan');
 const ApiError = require('./utils/ApiError');
 const { errorConverter, errorHandler } = require('./middleware/error');
 const authLimiter = require('./middleware/rate-limiter');
+const routes = require('./routes');
 
 const app = express();
 
@@ -42,6 +43,8 @@ app.options('*', cors());
 if (config.env === 'production') {
     app.use('/v1/auth', authLimiter);
 }
+
+app.use('/v1', routes);
 
 // send back error 404 for unknown request
 app.use((req, res, next) => {
