@@ -9,7 +9,7 @@ const createUser = {
     }),
 };
 
-const getUser = {
+const getUsers = {
     query: Joi.object.keys({
         name: Joi.string(),
         role: Joi.string().valid('user', 'admin'),
@@ -19,7 +19,33 @@ const getUser = {
     }),
 };
 
+const getUser = {
+    params: Joi.object.keys({
+        userId: Joi.string(),
+    }),
+};
+
+const updateUser = {
+    params: Joi.object.keys({
+        userId: Joi.string(),
+    }),
+    body: Joi.object.keys({
+        name: Joi.string().email(),
+        password: Joi.string(),
+        email: Joi.string(),
+    }),
+};
+
+const deleteUser = {
+    params: Joi.object.keys({
+        userId: Joi.string(),
+    }),
+};
+
 module.exports = {
     createUser,
+    getUsers,
     getUser,
+    updateUser,
+    deleteUser,
 };

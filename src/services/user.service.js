@@ -45,9 +45,42 @@ const getUserById = async (userId) => {
  */
 const getUserByEmail = async (email) => User.findOne({ email });
 
+/**
+ *
+ * @param {ObjectId} userId
+ * @param {Object} updateBody
+ * @returns {Promise<User>}
+ */
+const updateUserById = async (userId, updateBody) => {
+    const user = await getUserById(userId);
+    if (!user) {
+        throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
+    }
+    if (updateBody.email && (await User.isEmailTaken(updateBody.email, userId))) {
+        throw new ApiError(httpStatus.BAD_REQUEST, 'Email already taken');
+    }
+    Object.assign(user, updateBody);
+    await user.save();
+    return user;
+};
+
+/**
+ * delete user
+ * @param {ObjectId} userId
+ */
+const deleteUserById = async (userId) => {
+    const user = await getUserById(userId);
+    if (!user) {
+        throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
+    }
+    await user.remove();
+};
+
 module.exports = {
     createUser,
     queryUser,
     getUserById,
     getUserByEmail,
+    updateUserById,
+    deleteUserById,
 };

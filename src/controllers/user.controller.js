@@ -23,3 +23,13 @@ exports.getUser = catchAsync(async (req, res) => {
     }
     res.send(user);
 });
+
+exports.updateUserById = catchAsync(async (req, res) => {
+    const user = await userService.updateUserById(req.params.userId, req.body);
+    res.send(user);
+});
+
+exports.deleteUser = catchAsync(async (req, res) => {
+    await userService.deleteUserById(req.params.userId);
+    res.status(httpStatus.NO_CONTENT).send();
+});
