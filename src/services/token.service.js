@@ -1,8 +1,11 @@
 const moment = require('moment');
 const jwt = require('jsonwebtoken');
+const crypto = require('crypto');
 const config = require('../config/config');
 const { Token } = require('../models');
 const { tokenTypes } = require('../config/tokens');
+
+const generateRandomToken = () => crypto.randomBytes(40).toString('hex');
 
 const generateToken = async (user, expires, type, secret = config.jwt.secret) => {
     const payload = {
@@ -28,7 +31,7 @@ const generateAuthToken = async (user) => {
     const accessTokenExp = moment().add(config.jwt.accessExpirationMinutes, 'minutes');
     const accessToken = await generateToken(user, accessTokenExp, tokenTypes.ACCESS);
     const refreshTokenExp = moment().add(config.jwt.refreshExpirationDays, 'minutes');
-    const refreshToken = await generateToken(user, refreshTokenExp, tokenTypes.REFRESH);
+    const refreshToken = generateRandomToken();
     await saveToken(refreshToken, user.id, refreshTokenExp);
     return {
         accessToken,
