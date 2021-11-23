@@ -1,3 +1,4 @@
+const httpStatus = require('http-status');
 const { authService, tokenService } = require('../services');
 const catchAsync = require('../utils/catchAsync');
 
@@ -13,4 +14,9 @@ exports.refreshAuth = catchAsync(async (req, res) => {
     const { refreshToken } = req.params;
     const newToken = await authService.refreshAuth(token, refreshToken);
     res.send({ ...newToken });
+});
+
+exports.logout = catchAsync(async (req, res) => {
+    await authService.logOut(req.body.token);
+    res.status(httpStatus.NO_CONTENT).send();
 });

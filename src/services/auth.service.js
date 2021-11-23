@@ -2,6 +2,7 @@ const httpStatus = require('http-status');
 const tokenService = require('./token.service');
 const userService = require('./user.service');
 const ApiError = require('../utils/ApiError');
+const Token = require('../models/token.models');
 
 const loginUsernamePass = async (email, password) => {
     const user = await userService.getUserByEmail(email);
@@ -26,7 +27,16 @@ const refreshAuth = async (token, refreshToken) => {
     }
 };
 
+const logOut = async (token) => {
+    const _token = await Token.findOne({ token });
+    if (!_token) {
+        throw new ApiError(httpStatus.NOT_FOUND, 'Not Found');
+    }
+    await _token.remove();
+};
+
 module.exports = {
     loginUsernamePass,
     refreshAuth,
+    logOut,
 };
