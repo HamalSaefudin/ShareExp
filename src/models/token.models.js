@@ -22,6 +22,11 @@ const tokenSchema = mongoose.Schema({
 
 tokenSchema.plugin(toJson);
 
+tokenSchema.statics.tokenIsExpired = function () {
+    const _token = this;
+    return Date.now() >= _token.expires;
+};
+
 /**
  * @typedef Token
  */

@@ -7,3 +7,10 @@ exports.login = catchAsync(async (req, res) => {
     const token = await tokenService.generateAuthToken(user);
     res.send(token);
 });
+
+exports.refreshAuth = catchAsync(async (req, res) => {
+    const { token } = req.body;
+    const { refreshToken } = req.params;
+    const newToken = await authService.refreshAuth(token, refreshToken);
+    res.send({ ...newToken });
+});

@@ -2,9 +2,9 @@ POST http://localhost:3000/v1/users/createUser
 Content-Type: application/json
 
 {
-    "email":"Hamalsaefudin4@gmail.com",
+    "email":"Hamalsaefudin24@gmail.com",
     "password":"Hamal123",
-    "name": "Hamal",
+    "name": "Budi",
     "role":"user"
 }
 
@@ -18,5 +18,14 @@ Content-Type: application/json
 }
 
 ####
-GET http://localhost:3000/v1/users/getAllUser
+GET http://localhost:3000/v1/users/getAllUser?name=Hamal&sortBy=createdAt
 Content-Type: application/json
+
+####
+POST http://localhost:3000/v1/auth/refreshAuth/b8f811a546c7f706fed1213650927aeadb77209d5b4035f55b3cb73783c15a3960bf5d95e0b18a79
+Content-Type: application/json
+
+{
+    "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MTliM2MzMjY1NTNiNmQ0MDI3NjE3ZGYiLCJpYXQiOjE2Mzc2MzcwMjksImV4cGlyZXMiOjE2Mzc2Mzg4MjksInR5cGUiOiJhY2Nlc3MiLCJyb2xlcyI6InVzZXIifQ.MsO2TGDjG-IpmIfZHZ3nEMqPWdeXFSOUwc6Cq6O-KqE"
+}
+

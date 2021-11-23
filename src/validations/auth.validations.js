@@ -7,6 +7,16 @@ const login = {
     }),
 };
 
+const refreshAuth = {
+    body: Joi.object().keys({
+        token: Joi.string().required(),
+    }),
+    params: Joi.object().keys({
+        refreshToken: Joi.string().required(),
+    }),
+};
+
 module.exports = {
     login,
+    refreshAuth,
 };

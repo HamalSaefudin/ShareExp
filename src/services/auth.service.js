@@ -1,5 +1,6 @@
 const httpStatus = require('http-status');
-const { userService } = require('.');
+const tokenService = require('./token.service');
+const userService = require('./user.service');
 const ApiError = require('../utils/ApiError');
 
 const loginUsernamePass = async (email, password) => {
@@ -10,6 +11,22 @@ const loginUsernamePass = async (email, password) => {
     return user;
 };
 
+const refreshAuth = async (token, refreshToken) => {
+    try {
+        const _oldToken = await tokenService.getRefreshToken(refreshToken);
+        const userId = await tokenService.getUserIdFromToken(token);
+        const user = await userService.getUserById(userId);
+        if (!user) {
+            throw new Error('Token is invalid');
+        }
+        await _oldToken.remove();
+        return tokenService.generateAuthToken(user);
+    } catch (error) {
+        throw new ApiError(httpStatus.UNAUTHORIZED, 'Please authenticate');
+    }
+};
+
 module.exports = {
     loginUsernamePass,
+    refreshAuth,
 };
