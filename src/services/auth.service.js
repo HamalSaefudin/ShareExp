@@ -35,8 +35,18 @@ const logOut = async (token) => {
     await _token.remove();
 };
 
+const changePassword = async (newpass, userid) => {
+    const _user = await userService.getUserById(userid);
+    if (!_user) {
+        throw new Error('User doesnt find');
+    }
+    _user.password = newpass;
+    await _user.save();
+};
+
 module.exports = {
     loginUsernamePass,
     refreshAuth,
     logOut,
+    changePassword,
 };
