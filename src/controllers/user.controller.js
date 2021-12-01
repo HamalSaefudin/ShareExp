@@ -12,6 +12,7 @@ exports.createUser = catchAsync(async (req, res) => {
 exports.getAllUser = catchAsync(async (req, res) => {
     const filter = pick(req.query, ['name', 'role']);
     const options = pick(req.query, ['sortBy', 'limit', 'page']);
+    Object.assign(options, { select: '-_id name email role' });
     const result = await userService.queryUser(filter, options);
     res.send(result);
 });

@@ -1,6 +1,7 @@
 const httpStatus = require('http-status');
 const catchAsync = require('../utils/catchAsync');
 const authorService = require('../services/author.service');
+const pick = require('../utils/pick');
 
 const createAuthor = catchAsync(async (req, res) => {
     const author = await authorService.createAuthor(req.body);
@@ -8,7 +9,9 @@ const createAuthor = catchAsync(async (req, res) => {
 });
 
 const getAuthor = catchAsync(async (req, res) => {
-    const authors = await authorService.getAuthors(req.params.filter, req.params.options);
+    const filter = pick(req.query, ['name', 'role']);
+    const options = pick(req.query, ['sortBy', 'limit', 'page']);
+    const authors = await authorService.getAuthors(filter, options);
     res.json(authors);
 });
 

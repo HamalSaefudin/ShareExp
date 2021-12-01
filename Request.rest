@@ -29,3 +29,13 @@ Content-Type: application/json
     "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MTliM2MzMjY1NTNiNmQ0MDI3NjE3ZGYiLCJpYXQiOjE2Mzc2MzcwMjksImV4cGlyZXMiOjE2Mzc2Mzg4MjksInR5cGUiOiJhY2Nlc3MiLCJyb2xlcyI6InVzZXIifQ.MsO2TGDjG-IpmIfZHZ3nEMqPWdeXFSOUwc6Cq6O-KqE"
 }
 
+###
+POST http://localhost:3000/v1/author/createAuthor
+Content-Type: application/json
+
+{
+    "name":"John F Kenedy",
+    "socialMedia":[{"instagram":"instagram.com/johnfkenedy"},{"twitter":"twitter.com/johnf"}],
+    "description":"John f kenedy is lorem ipsum dolor sit amet"
+}
+

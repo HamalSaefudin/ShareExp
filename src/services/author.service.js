@@ -1,8 +1,22 @@
 const { Author } = require('../models');
 
-exports.createAuthor = (authorPayload) => Author.create(authorPayload);
+const createAuthor = (authorPayload) => Author.create(authorPayload);
 
-exports.getAuthors = async (filter, options) => {
+const getAuthors = async (filter, options) => {
     const authors = await Author.paginate(filter, options);
     return authors;
+};
+
+const getAuthorById = async (authorId) => {
+    const author = Author.findById(authorId);
+    return author;
+};
+
+const getMostLikeAuthor = () => {
+
+};
+
+module.exports = {
+    createAuthor,
+    getAuthors,
 };
