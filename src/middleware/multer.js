@@ -6,7 +6,7 @@ const RandomizePath = require('../utils/RandomizePath');
 
 const storage = multer.diskStorage({
     destination(req, file, cb) {
-        const paths = RandomizePath(file.originalname).fullpath;
+        const paths = RandomizePath(req.body.docname).fullpath;
         fs.mkdirSync(paths, { recursive: true });
         cb(null, paths);
     },
