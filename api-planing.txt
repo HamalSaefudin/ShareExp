@@ -13,9 +13,3 @@ naming convention for author point = popularity point
 get top author in every specialitist = get by topic and select the highest popularity point
 when create article, user should select the subject(ui/ux,business,coding)
 
-dont forget about the authorization
-
-
-abaout photo
-
-repository || content
