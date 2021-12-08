@@ -10,7 +10,6 @@ const articleSchema = mongoose.Schema({
     },
     thumbnail: {
         type: String,
-        required: true,
     },
     content: {
         type: String,
@@ -25,9 +24,9 @@ const articleSchema = mongoose.Schema({
         type: String,
         required: true,
     },
-    categories: [{
+    series: {
         type: String,
-    }],
+    },
 });
 
 articleSchema.plugin(toJson);
