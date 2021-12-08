@@ -1,6 +1,9 @@
 article :
 topic : UI/UX, coding, business (about)
-category: bab, sub bab, part of, series article
+series: series article
+
+author:
+speciality
 
 
 when we hit like on article, its automaticly increase author point.
@@ -13,4 +16,6 @@ when create article, user should select the subject(ui/ux,business,coding)
 dont forget about the authorization
 
 
+abaout photo
 
+repository || content

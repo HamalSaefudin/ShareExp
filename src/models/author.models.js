@@ -24,12 +24,15 @@ const authorSchema = mongoose.Schema({
         type: Number,
         default: 0,
     },
+    speciality: [{
+        type: String,
+    }],
 });
 
 authorSchema.plugin(toJson);
 authorSchema.plugin(paginate);
 
-authorSchema.static.giveLike = () => {
+authorSchema.static.likeAuthor = () => {
     this.like += 1;
 };
 
