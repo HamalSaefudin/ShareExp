@@ -1,8 +1,8 @@
 const httpStatus = require('http-status');
 const catchAsync = require('../utils/catchAsync');
-const authorService = require('../services/author.service');
 const pick = require('../utils/pick');
 const ApiError = require('../utils/ApiError');
+const { authorService } = require('../services');
 
 const createAuthor = catchAsync(async (req, res) => {
     const author = await authorService.createAuthor(req.body);

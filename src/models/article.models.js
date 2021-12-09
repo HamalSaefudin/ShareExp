@@ -20,12 +20,9 @@ const articleSchema = mongoose.Schema({
         ref: 'Author',
         required: true,
     },
-    topic: {
-        type: String,
-        required: true,
-    },
-    series: {
-        type: String,
+    seriesId: {
+        type: ObjectId,
+        ref: 'Series',
     },
 });
 

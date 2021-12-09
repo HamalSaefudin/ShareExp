@@ -25,8 +25,12 @@ const authorSchema = mongoose.Schema({
         default: 0,
     },
     speciality: [{
-        type: String,
+        type: ObjectId,
+        ref: 'Speciality',
     }],
+    profilePicture: {
+        type: String,
+    },
 });
 
 authorSchema.plugin(toJson);
